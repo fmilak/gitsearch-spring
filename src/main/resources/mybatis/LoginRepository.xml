@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fmilak.gitsearch.repository.LoginRepository">
+
+    <resultMap id="userResultMap" type="com.fmilak.gitsearch.model.User">
+        <result column="uuid" property="uuid" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+    </resultMap>
+
+    <resultMap id="tokenResultMap" type="com.fmilak.gitsearch.model.Token">
+        <result column="id" property="id" />
+        <result column="token" property="token" />
+    </resultMap>
+
+    <select id="getUserData" parameterType="string" resultMap="userResultMap">
+        select *
+        from user
+        where user.username = #{username}
+    </select>
+
+    <select id="getToken" resultMap="tokenResultMap">
+        select *
+        from token
+    </select>
+
+</mapper>
